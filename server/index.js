@@ -13,6 +13,7 @@ const chalk = require('chalk')
 global.Promise = bluebird
 
 const isProd = process.env.NODE_ENV === 'production'
+console.log('isProd-------------'+isProd+'-------------------------------------------------');
 
 const rootPath = path.resolve(__dirname, '../')
 
@@ -22,6 +23,9 @@ const resolve = file => path.resolve(rootPath, file)
 const app = new Koa()
 
 const router = require('./router')(app)
+console.log('catch---------router----s-------------------------------------------------');
+console.log(router);
+console.log('catch---------router----e-------------------------------------------------');
 
 // cache static
 const serve = (filepath, cache) => require('koa-static')(resolve(filepath), {
@@ -36,6 +40,12 @@ app.use(compression({
 app.use(favicon('./public/favicon.ico'))
 app.use(serve('public', true))
 app.use(serve('dist', true))
+console.log('catch---------serve("public", true)----s-------------------------------------------------');
+console.log(serve('public', true));
+console.log('catch---------serve("public", true)----e-------------------------------------------------');
+console.log('catch---------serve("dist", true)----s-------------------------------------------------');
+console.log(serve('dist', true));
+console.log('catch---------serve("dist", true)----e-------------------------------------------------');
 
 app.use(router.routes()).use(router.allowedMethods())
 

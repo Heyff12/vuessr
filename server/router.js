@@ -7,8 +7,10 @@ const isProd = process.env.NODE_ENV === 'production'
 
 const useMicroCache = process.env.MICRO_CACHE !== 'false'
 const cacheUrls = ['/', '/page1', '/page2']
+console.log('useMicroCache-------------'+useMicroCache+'-------------------------------------------------');
 
 const isCacheable = ctx => cacheUrls.indexOf(ctx.url) >= 0 && useMicroCache
+console.log('isCacheable-------------'+isCacheable+'-------------------------------------------------');
 
 const microCache = LRU({
   max: 100,
@@ -80,14 +82,14 @@ module.exports = function (app) {
           `
       }
       const content = await view.render(context)
-      console.log('catch---------content----s---------');
+      console.log('catch---------content----s-------------------------------------------------');
       console.log(content);
-      console.log('catch---------content----e---------');
+      console.log('catch---------content----e-------------------------------------------------');
       handleEnd(content)
     } catch (error) {
-      console.log('catch---------error----s---------');
+      console.log('catch---------error----s-------------------------------------------------');
       console.log(error);
-      console.log('catch---------error----e---------');
+      console.log('catch---------error----e-------------------------------------------------');
       handleError(error)
     }
   }
