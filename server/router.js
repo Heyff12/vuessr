@@ -7,7 +7,7 @@ const isProd = process.env.NODE_ENV === 'production'
 
 const useMicroCache = process.env.MICRO_CACHE !== 'false'
 const cacheUrls = ['/', '/page1', '/page2']
-console.log('useMicroCache-------------'+useMicroCache+'-------------------router------------------------------');
+console.log('useMicroCache-------------' + useMicroCache + '-------------------router------------------------------');
 
 const isCacheable = ctx => cacheUrls.indexOf(ctx.url) >= 0 && useMicroCache
 
@@ -45,7 +45,7 @@ module.exports = function (app) {
 
     // hit micro cache
     const cacheable = isCacheable(ctx)
-    console.log('cacheable-------------'+cacheable+'---------------router----------------------------------');
+    console.log('cacheable-------------' + cacheable + '---------------router----------------------------------');
     if (cacheable) {
       const html = microCache.get(ctx.url)
       console.log('catch---------html----s----------------------router---------------------------');
@@ -106,10 +106,16 @@ module.exports = function (app) {
     }
   }
 
+  //接口返回数据
+  const list = require('./api/list')
+  router.get('/vuessr/v1/list/info', list.info);
+
+
   // Not matched /api uri
   router.get(/^(?!\/api)(?:\/|$)/, isProd ? render : (ctx, next) => {
     view.ready.then(() => render(ctx, next))
   })
+  
 
   return router
 }

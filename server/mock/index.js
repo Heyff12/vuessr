@@ -1,9 +1,6 @@
 // 使用 Mock
 var Mock = require("mockjs");
 var Random = Mock.Random;
-// Mock.setup({
-//   timeout: "200-1000"
-// });
 
 
 //获取信息
@@ -13,7 +10,12 @@ var info_list = {
   resperr: "",
   "data|12-20": [{
     "id|+1": 11111,
-    "title": Random.ctitle(10,30)
+    "title": Random.ctitle(10, 30)
   }]
 };
-Mock.mock(/vuessr\/v1\/list\/info/, "get", info_list);
+
+module.exports = {
+  info_list
+}
+
+//不能用于服务端

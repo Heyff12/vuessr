@@ -19,7 +19,7 @@ export default {
     return {
       msg: "page1",
       // list: [],
-      // listUrl: "/vuessr/v1/api/list/info"
+      // listUrl: "/vuessr/v1/list/info"
     };
   },
   asyncData ({ store, route }) {

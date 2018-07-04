@@ -1,6 +1,6 @@
 import axios from "axios";
 let url = {
-  listUrl: "/vuessr/v1/api/list/info"
+  listUrl: "/vuessr/v1/list/info"
 };
 export function fetchList() {
   return axios.get(url.listUrl)

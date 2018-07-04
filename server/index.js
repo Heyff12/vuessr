@@ -55,6 +55,7 @@ console.log('catch---------router.allowedMethods()----s--------------------index
 console.log(router.allowedMethods());
 console.log('catch---------router.allowedMethods()----e----------------------index---------------------------');
 
+
 // page not found
 app.use((ctx, next) => {
   ctx.type = 'html'
