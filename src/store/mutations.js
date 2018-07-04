@@ -1,19 +1,10 @@
+// import Vue from 'vue'
 const mutations = {
-  setList(state) {
-    state.list = [{
-      id: 11111,
-      title: "aaaaaaaaaaaaaaa"
-    }, {
-      id: 22222,
-      title: "bbbbbbbbbbbbbbbb"
-    }, {
-      id: 333333,
-      title: "cccccccccccccccc"
-    }, {
-      id: 4444444,
-      title: "ddddddddddddddddd"
-    }]
-
+  setList(state,data) {
+    console.log('---mutations-----')
+    console.log(data);
+    state.list = data;
+    // Vue.set(state.list, data)
   },
 }
 

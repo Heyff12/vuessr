@@ -14,10 +14,20 @@ import {
   sync
 } from 'vuex-router-sync'
 import title from './mixins/title'
+import {
+  Message
+} from 'element-ui';
+// import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(Message);
 
 Vue.mixin(title)
 
 Vue.config.productionTip = false
+//本地模拟数据-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+import '../mock/global'
+//ajax请求通用---------------------------------------------------------------------------------------------
+import ajax_axios from "./util/ajax_axios"
+Vue.prototype.$ajax_axios = ajax_axios //设置ajax请求全局变量
 
 // 导出一个工厂函数，用于创建新的
 // 应用程序、router 和 store 实例
