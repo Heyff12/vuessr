@@ -6,18 +6,22 @@
 
 <script>
 export default {
-  name: 'page1',
-  data () {
+  name: "page1",
+  title() {
+    return "page1";
+  },
+  data() {
     return {
-      msg: 'page1'
-    }
+      msg: "page1"
+    };
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
+h1,
+h2 {
   font-weight: normal;
 }
 </style>

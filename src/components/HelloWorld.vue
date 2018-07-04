@@ -51,6 +51,9 @@
 <script>
 export default {
   name: 'HelloWorld',
+  title() {
+    return "HelloWorld";
+  },
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'

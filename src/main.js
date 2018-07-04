@@ -13,6 +13,9 @@ import {
 import {
   sync
 } from 'vuex-router-sync'
+import title from './mixins/title'
+
+Vue.mixin(title)
 
 Vue.config.productionTip = false
 
@@ -29,16 +32,16 @@ export function createApp() {
 
   // 创建应用程序实例，将 router 和 store 注入
   const app = new Vue({
-      // 注入 router 到根 Vue 实例
-      router,
-      store,
-      // 根实例简单的渲染应用程序组件。
-      render: h => h(App)
+    // 注入 router 到根 Vue 实例
+    router,
+    store,
+    // 根实例简单的渲染应用程序组件。
+    render: h => h(App)
   })
   return {
-      app,
-      router,
-      store
+    app,
+    router,
+    store
   }
 }
 

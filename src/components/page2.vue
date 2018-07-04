@@ -7,6 +7,9 @@
 <script>
 export default {
   name: 'page2',
+  title() {
+    return "page2";
+  },
   data () {
     return {
       msg: 'page2'
