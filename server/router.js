@@ -7,10 +7,9 @@ const isProd = process.env.NODE_ENV === 'production'
 
 const useMicroCache = process.env.MICRO_CACHE !== 'false'
 const cacheUrls = ['/', '/page1', '/page2']
-console.log('useMicroCache-------------'+useMicroCache+'-------------------------------------------------');
+console.log('useMicroCache-------------'+useMicroCache+'-------------------router------------------------------');
 
 const isCacheable = ctx => cacheUrls.indexOf(ctx.url) >= 0 && useMicroCache
-console.log('isCacheable-------------'+isCacheable+'-------------------------------------------------');
 
 const microCache = LRU({
   max: 100,
@@ -20,8 +19,14 @@ const microCache = LRU({
 module.exports = function (app) {
   // create vue renderer instance
   const view = new View(app)
+  console.log('catch---------view----s---------------------router----------------------------');
+  console.log(view);
+  console.log('catch---------view----e---------------------router----------------------------');
 
   async function render(ctx, next) {
+    console.log('catch---------ctx----s---------------------router----------------------------');
+    console.log(ctx);
+    console.log('catch---------ctx----e---------------------router----------------------------');
     // render middleware
     ctx.type = 'html'
 
@@ -29,6 +34,9 @@ module.exports = function (app) {
       PassThrough
     } = require('stream')
     ctx.body = new PassThrough()
+    console.log('catch---------view.renderer----s------------router-------------------------------------');
+    console.log(view.renderer);
+    console.log('catch---------view.renderer----e-------------router------------------------------------');
 
     if (!view.renderer) {
       ctx.body.end('waiting for compilation... refresh in a moment.')
@@ -37,8 +45,12 @@ module.exports = function (app) {
 
     // hit micro cache
     const cacheable = isCacheable(ctx)
+    console.log('cacheable-------------'+cacheable+'---------------router----------------------------------');
     if (cacheable) {
       const html = microCache.get(ctx.url)
+      console.log('catch---------html----s----------------------router---------------------------');
+      console.log(html);
+      console.log('catch---------html----e----------------------router---------------------------');
       if (html) {
         ctx.set('X-Cache-Hit', '1')
         ctx.body.end(html)
@@ -73,7 +85,7 @@ module.exports = function (app) {
 
     try {
       const context = {
-        title: 'blog',
+        title: 'vuessr测试',
         url: ctx.url,
         meta: `
             <meta charset="utf-8">
@@ -82,14 +94,14 @@ module.exports = function (app) {
           `
       }
       const content = await view.render(context)
-      console.log('catch---------content----s-------------------------------------------------');
+      console.log('catch---------content----s------------------------router-------------------------');
       console.log(content);
-      console.log('catch---------content----e-------------------------------------------------');
+      console.log('catch---------content----e----------------------router---------------------------');
       handleEnd(content)
     } catch (error) {
-      console.log('catch---------error----s-------------------------------------------------');
+      console.log('catch---------error----s------------------------router-------------------------');
       console.log(error);
-      console.log('catch---------error----e-------------------------------------------------');
+      console.log('catch---------error----e-----------------------router--------------------------');
       handleError(error)
     }
   }

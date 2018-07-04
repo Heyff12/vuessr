@@ -13,7 +13,7 @@ const chalk = require('chalk')
 global.Promise = bluebird
 
 const isProd = process.env.NODE_ENV === 'production'
-console.log('isProd-------------'+isProd+'-------------------------------------------------');
+console.log('isProd-------------'+isProd+'------------------------------index-------------------');
 
 const rootPath = path.resolve(__dirname, '../')
 
@@ -23,9 +23,9 @@ const resolve = file => path.resolve(rootPath, file)
 const app = new Koa()
 
 const router = require('./router')(app)
-console.log('catch---------router----s-------------------------------------------------');
+console.log('catch---------router----s------------------------index-------------------------');
 console.log(router);
-console.log('catch---------router----e-------------------------------------------------');
+console.log('catch---------router----e------------------------index-------------------------');
 
 // cache static
 const serve = (filepath, cache) => require('koa-static')(resolve(filepath), {
@@ -40,14 +40,20 @@ app.use(compression({
 app.use(favicon('./public/favicon.ico'))
 app.use(serve('public', true))
 app.use(serve('dist', true))
-console.log('catch---------serve("public", true)----s-------------------------------------------------');
+console.log('catch---------serve("public", true)----s---------------------index----------------------------');
 console.log(serve('public', true));
-console.log('catch---------serve("public", true)----e-------------------------------------------------');
-console.log('catch---------serve("dist", true)----s-------------------------------------------------');
+console.log('catch---------serve("public", true)----e----------------------index---------------------------');
+console.log('catch---------serve("dist", true)----s------------------------index-------------------------');
 console.log(serve('dist', true));
-console.log('catch---------serve("dist", true)----e-------------------------------------------------');
+console.log('catch---------serve("dist", true)----e------------------------index-------------------------');
 
 app.use(router.routes()).use(router.allowedMethods())
+console.log('catch---------router.routes()----s--------------------------index-----------------------');
+console.log(router.routes());
+console.log('catch---------router.routes()----e----------------------------index---------------------');
+console.log('catch---------router.allowedMethods()----s--------------------index-----------------------------');
+console.log(router.allowedMethods());
+console.log('catch---------router.allowedMethods()----e----------------------index---------------------------');
 
 // page not found
 app.use((ctx, next) => {

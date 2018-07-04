@@ -31,7 +31,7 @@ const {
 } = createApp()
 
 if (window.__INITIAL_STATE__) {
-    store.replaceState(window.__INITIAL_STATE__)
+  store.replaceState(window.__INITIAL_STATE__)
 }
 // 这里假定 App.vue 模板中根元素具有 `id="app"`
 // app.$mount('#app')
@@ -43,13 +43,27 @@ router.onReady(() => {
   router.beforeResolve((to, from, next) => {
     const matched = router.getMatchedComponents(to)
     const prevMatched = router.getMatchedComponents(from)
+    console.log('catch---------matched----s----------------------entry-client---------------------------');
+    console.log(matched);
+    console.log('catch---------matched----e----------------------entry-client---------------------------');
+    console.log('catch---------prevMatched----s------------------entry-client-------------------------------');
+    console.log(prevMatched);
+    console.log('catch---------prevMatched----e------------------entry-client-------------------------------');
 
     // 我们只关心非预渲染的组件
     // 所以我们对比它们，找出两个匹配列表的差异组件
     let diffed = false
     const activated = matched.filter((c, i) => {
+      console.log('catch---------c----s----------------entry-client---------------------------------');
+      console.log(c);
+      console.log(prevMatched[i]);
+      console.log('catch---------c----e----------------entry-client---------------------------------');
       return diffed || (diffed = (prevMatched[i] !== c))
     })
+    console.log('catch---------activated----s----------------entry-client---------------------------------');
+    console.log(activated);
+    console.log(activated.length);
+    console.log('catch---------activated----e----------------entry-client---------------------------------');
 
     if (!activated.length) {
       return next()
