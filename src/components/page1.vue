@@ -1,6 +1,11 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <ul>
+      <li v-for="item in list" :key="item.id">
+        {{item.id}}--{{item.title}}
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -12,8 +17,12 @@ export default {
   },
   data() {
     return {
-      msg: "page1"
+      msg: "page1",
+      list:[]
     };
+  },
+  created(){
+    this.list = this.$store.state.list;
   }
 };
 </script>
