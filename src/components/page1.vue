@@ -24,7 +24,7 @@ export default {
   },
   asyncData ({ store, route }) {
     // 触发 action 后，会返回 Promise
-    console.log('asyncData触发数据获取');
+    console.log('--------asyncData触发数据获取---------page1-------------');
     return store.dispatch('fetchItem')
   },
   computed: {

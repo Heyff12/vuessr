@@ -6,6 +6,7 @@ export default {
     // let data = await fetchList();
     // console.log(data);
     // commit('setList', data)
+    console.log('--------asyncData触发数据获取---------actions-------------');
     commit('setList', await fetchList())
   }
 }

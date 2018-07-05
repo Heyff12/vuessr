@@ -1,6 +1,8 @@
 import axios from "axios";
+let baseUrl = 'http://127.0.0.1:9090';
+//url必须写完整
 let url = {
-  listUrl: "/vuessr/v1/list/info"
+  listUrl: baseUrl + "/vuessr/v1/list/info"
 };
 export function fetchList() {
   return axios.get(url.listUrl)
