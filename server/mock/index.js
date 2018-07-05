@@ -18,4 +18,4 @@ module.exports = {
   info_list
 }
 
-//不能用于服务端
+//不能用于服务端---该文件作废

@@ -10,6 +10,12 @@ Vue.mixin({
     const {
       asyncData
     } = this.$options
+    console.log('catch---------asyncData----s----------------------entry-client---------------------------');
+    console.log(asyncData);
+    console.log(this.$store);
+    console.log(to);
+    console.log(from);
+    console.log('catch---------asyncData----e----------------------entry-client---------------------------');
     if (asyncData) {
       asyncData({
         store: this.$store,

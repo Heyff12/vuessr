@@ -87,6 +87,9 @@ export default context => {
         // 并且 `template` 选项用于 renderer 时，
         // 状态将自动序列化为 `window.__INITIAL_STATE__`，并注入 HTML。
         context.state = store.state
+        console.log('catch---------context.state----s----------------------entry-server---------------------------');
+        console.log(context.state);
+        console.log('catch---------context.state----e----------------------entry-server---------------------------');
 
         resolve(app)
       }).catch(reject)
